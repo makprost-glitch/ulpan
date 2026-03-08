@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>С 8 Марта</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(135deg,#ffd9ec,#fff3f8);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+overflow:hidden;
+text-align:center;
+}
+
+/* старт */
+
+.start h1{
+color:#ff2e88;
+font-size:32px;
+}
+
+button{
+margin-top:20px;
+padding:12px 25px;
+border:none;
+border-radius:12px;
+background:#ff2e88;
+color:white;
+font-size:18px;
+cursor:pointer;
+}
+
+/* открытка */
+
+.card{
+display:none;
+}
+
+/* конверт */
+
+.envelope{
+position:relative;
+width:300px;
+height:180px;
+background:#ffb6d9;
+margin:auto;
+border-radius:10px;
+cursor:pointer;
+overflow:visible;
+}
+
+/* крышка */
+
+.flap{
+position:absolute;
+width:100%;
+height:100%;
+background:#ff8ec7;
+clip-path:polygon(0 0,100% 0,50% 60%);
+transform-origin:top;
+transition:1s;
+}
+
+.open .flap{
+transform:rotateX(180deg);
+}
+
+/* письмо */
+
+.letter{
+position:absolute;
+width:260px;
+background:white;
+left:50%;
+transform:translateX(-50%) translateY(60px);
+padding:15px;
+border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+transition:1s;
+opacity:0;
+}
+
+.open .letter{
+transform:translateX(-50%) translateY(-140px);
+opacity:1;
+}
+
+.letter img{
+width:100%;
+border-radius:10px;
+margin-bottom:10px;
+}
+
+.text{
+font-size:16px;
+color:#444;
+}
+
+/* розы */
+
+.rose{
+position:fixed;
+top:-20px;
+font-size:22px;
+animation:fall linear infinite;
+}
+
+@keyframes fall{
+0%{transform:translateY(-10vh) rotate(0deg);}
+100%{transform:translateY(110vh) rotate(360deg);}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="start" id="start">
+<h1>🌸 Поздравляю с 8 Марта 🌸</h1>
+<button onclick="next()">Открыть открытку</button>
+</div>
+
+<div class="card" id="card">
+
+<h2>Нажми на конверт</h2>
+
+<div class="envelope" id="env" onclick="openEnvelope()">
+
+<div class="flap"></div>
+
+<div class="letter">
+
+<img src="ulpan.jpg">
+
+<div class="text">
+С 8 Марта, Улпан 🌸 <br><br>
+
+Поздравляю тебя с 8 марта!  
+Пусть у тебя всегда будет хорошее настроение,  
+много улыбок и счастья.  
+Пусть всё у тебя будет хорошо ❤️
+<br><br>
+От Төлеби
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<audio autoplay loop>
+<source src="perfect.mp3">
+</audio>
+
+<script>
+
+function next(){
+document.getElementById("start").style.display="none";
+document.getElementById("card").style.display="block";
+}
+
+function openEnvelope(){
+document.getElementById("env").classList.toggle("open");
+}
+
+/* розы */
+
+function rose(){
+const r=document.createElement("div");
+r.className="rose";
+r.innerHTML="🌹";
+r.style.left=Math.random()*100+"vw";
+r.style.animationDuration=(5+Math.random()*5)+"s";
+document.body.appendChild(r);
+
+setTimeout(()=>{r.remove()},10000);
+}
+
+setInterval(rose,500);
+
+</script>
+
+</body>
+</html>
